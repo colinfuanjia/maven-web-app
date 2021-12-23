@@ -1,0 +1,42 @@
+node{
+   def mavenHome = tool name: 'maven3.8.4'
+	
+	stage('1-clone') {
+
+	git credentialsId: 'GITHUB-CREDENTIALS', url: 'https://github.com/colinfuanjia/maven-web-app'
+	}
+
+	stage('2-mavenBiuld') {
+	    sh "${mavenHome}/bin/mvn clean package"
+
+	}
+
+    stage('4-uploadArtifacts') {
+ sh "${mavenHome}/bin/mvn deploy"
+
+	}
+
+	stage('5-DeployTomcat-UAT') {
+	deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://172.31.94.23:7000/')], contextPath: null, war: 'target/*war'
+
+	}
+
+	stage('6-EmailNotification') {
+
+	emailext body: '''Hello everyone,
+
+Ebay-Black-Friday''', subject: 'Build status', to: 'developers'
+
+	}
+	stage('Approval') {
+    timeout(time:8, unit: 'HOURS') {
+    input message: 'please verify and approve'
+    }
+	
+	}
+
+	stage('prod-Deploy') {
+	    deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://172.31.94.23:7000/')], contextPath: null, war: 'target/*war'
+
+	}
+ }
