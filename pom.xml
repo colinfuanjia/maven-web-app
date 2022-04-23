@@ -97,7 +97,7 @@
 	    <repository>
 	      <id>nexus</id>
 	      <name>Landmark Technologies Releases Nexus Repository</name>
-	      <url>http://172.31.81.207:8000/repository/boa-releases/</url>
+	      <url>http://172.31.4.231:8081/repository/bacrealeaserepo/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
