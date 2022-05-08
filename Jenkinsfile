@@ -1,7 +1,7 @@
 node
  {
   
-  def mavenHome = tool name: "maven3.6.2"
+  def mavenHome = tool name: "maven3.8.4"
   
       echo "GitHub BranhName ${env.BRANCH_NAME}"
       echo "Jenkins Job Number ${env.BUILD_NUMBER}"
@@ -22,7 +22,11 @@ node
  {
  sh "${mavenHome}/bin/mvn clean package"
  }
- 
+  /*
+  stage("S3Upload"){
+   
+ }
+ */
   /*
  stage("ExecuteSonarQubeReport")
  {
