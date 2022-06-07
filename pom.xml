@@ -104,7 +104,7 @@
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>Landmark Technologies Snapshot Nexus Repository </name>
-	      <url>http://44.192.81.238:8888/mylandmarktech/repository/boa-snapshot/</url>
+	      <url>http://172.31.86.79:8081/repository/mymaven_project_repo</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
